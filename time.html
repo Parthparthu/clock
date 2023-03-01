@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="This website helps you see time I guess??">
+        <meta name="author" content="ParthTech8">
+        <meta property="og:image" content="clock.png">
+        <meta property="og:title" content="The Ultimate Clock">
+        <meta property="og:description" content="Just visit it and decide by yourself">
+        <title>Clock</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+
+            *
+            {
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+            }
+
+            body
+            {
+                background: #0098d4;
+            }
+
+            .container
+            {
+                margin-top: 40px;
+                width: 100%;
+                height: 53vw;
+                font-size: 400%;
+                position: relative;
+                font-family: 'Tilt Warp', cursive;
+            }
+
+            .container div
+            {
+                padding: 22px;
+                width: 80%;
+                display: inline-block;
+            }
+
+            @media screen and (max-width: 730px)
+            {
+                .container
+                {
+                    font-size: 220%;
+                }
+            }
+
+            @media screen and (max-width: 500px)
+            {
+                .container
+                {
+                    font-size: 161%;
+                }
+            }
+        </style>
+        <link rel="icon" href="clock.png" type="image/icon type">
+    </head>
+    <body>
+        <div class="container">
+            <div class="title">Digital Clock</div><br>
+            <div class="time">
+                <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span>&nbsp&nbsp<span id="a_p"></span>
+            </div><br>
+            <div class="date">
+                <span id="day"></span>,&nbsp<span id="date"></span><sup>th</sup>&nbsp<span id="month"></span>&nbsp<span id="year"></span>
+            </div>
+        </div>
+        <script>
+            let displayTime = ()=>{
+                let now = new Date();
+                let aP = 'AM';
+                
+                if(now.getHours() > 12)
+                {
+                    document.getElementById('hours').innerHTML = Math.floor(now.getHours() - 12);
+                    aP = 'PM';
+                }
+                else
+                {
+                    document.getElementById('hours').innerHTML = now.getHours();
+                }
+
+                document.getElementById('minutes').innerHTML = now.getMinutes();
+                document.getElementById('seconds').innerHTML = now.getSeconds();
+                document.getElementById('a_p').innerHTML = aP;
+
+                let week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                let dayn = now.getDay();
+                let dayN = dayn - 1;
+                let day = week[dayN];
+
+                let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                let monthN = now.getMonth();
+                let month = months[monthN];
+
+                document.getElementById('day').innerHTML = day;
+                document.getElementById('date').innerHTML = now.getDate();
+                document.getElementById('month').innerHTML = month;
+                document.getElementById('year').innerHTML = now.getFullYear();
+            };
+
+            let myFunction = setInterval(displayTime, 1000);
+        </script>
+    </body>
+</html>
